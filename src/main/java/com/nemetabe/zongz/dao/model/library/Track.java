@@ -1,8 +1,14 @@
 package com.nemetabe.zongz.dao.model.library;
 
+import jakarta.persistence.*;
+
+import java.time.Instant;
+import java.util.UUID;
+
 @Entity
 public class Track {
-    @Id @GeneratedValue(strategy = GenerationType.UUID)
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     private String storagePath;
