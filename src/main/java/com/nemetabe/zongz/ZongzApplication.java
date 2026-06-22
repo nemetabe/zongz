@@ -1,4 +1,4 @@
-package com.codecool.zongz;
+package com.nemetabe.zongz;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

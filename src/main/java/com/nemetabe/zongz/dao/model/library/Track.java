@@ -1,4 +1,4 @@
-package com.codecool.zongz.dao.model;
+package com.nemetabe.zongz.dao.model.library;
 
 @Entity
 public class Track {
