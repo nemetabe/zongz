@@ -5,6 +5,9 @@
 # Log file
 *.log
 
+#DS store
+*.DS_Store
+
 # BlueJ files
 *.ctxt
 
