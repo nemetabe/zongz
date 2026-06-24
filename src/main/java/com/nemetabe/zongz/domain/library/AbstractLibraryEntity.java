@@ -1,4 +1,4 @@
-package com.nemetabe.zongz.domain;
+package com.nemetabe.zongz.domain.library;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -17,12 +17,12 @@ public abstract class AbstractLibraryEntity {
     private UUID id;
 
     @Column(nullable = false, unique = true)
-    private String normalizedName;   // lowercase, stripped — dedup key
+    protected String normalizedName;   // lowercase, stripped — dedup key
 
     @Column(nullable = false)
     protected String displayName;      // original casing — what the UI shows
 
-    private Instant createdAt = Instant.now();
+    protected Instant createdAt = Instant.now();
 
     // Dedup logic lives here — subclasses inherit it
     public boolean matches(String rawInput) {

@@ -36,23 +36,31 @@
 		</repository>
 	</repositories>
 	<dependencies>
+
 		<!-- Spring Boot Starter Web for building REST APIs and handling file uploads -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
+
+		<!-- JAudiotagger for processing MP3, FLAC, and WAV file metadata wrappers -->
+		<dependency>
+			<groupId>net.jthink</groupId>
+			<artifactId>jaudiotagger</artifactId>
+			<version>3.0.1</version>
+		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>com.github.RouHim</groupId>-->
+<!--			<artifactId>jaudiotagger</artifactId>-->
+<!--			<version>2.0.23</version>-->
+<!--		</dependency>		-->
+
 		<!-- Spring Data JPA for Object-Relational Mapping (ORM) and database persistence -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-
-		<!-- JAudiotagger for processing MP3, FLAC, and WAV file metadata wrappers -->
-		<dependency>
-			<groupId>com.github.RouHim</groupId>
-			<artifactId>jaudiotagger</artifactId>
-			<version>2.0.23</version>
+			<version>3.3.2</version>
 		</dependency>
 
 		<!-- Lombok to eliminate boilerplate code like getters, setters, and constructors -->
@@ -66,6 +74,15 @@
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
+			<version>42.7.7</version>
+			<scope>production</scope>
+		</dependency>
+
+		<!-- H2 Database Driver for test data persistence  -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>2.2.224</version>
 			<scope>runtime</scope>
 		</dependency>
 

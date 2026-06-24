@@ -1,4 +1,4 @@
-package com.nemetabe.zongz.domain.metadata;
+package com.nemetabe.zongz.domain.library;
 
 import com.nemetabe.zongz.domain.track.Track;
 import jakarta.persistence.*;

@@ -1,12 +1,20 @@
-package com.nemetabe.zongz.repository;
+package com.nemetabe.zongz.domain.port;
 
-import com.nemetabe.zongz.domain.track.AudioFileReference;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import com.nemetabe.zongz.domain.track.AudioFormat;
+import java.io.InputStream;
+import java.nio.file.Path;
 
-import java.util.List;
+/**
+ * Port — domain defines what it needs, infrastructure decides how.
+ * No Spring types, no JPA, no framework imports.
+ * Does NOT extend JpaRepository or any Spring interface.
+ */
+public interface FileStore {
+    /**
+     * Persists an audio stream to storage.
+     * @return the stable path the file was written to
+     */
+    Path store(InputStream inputStream, AudioFormat format, String originalFilename);
 
-@Repository
-public interface AudioFileReferenceRepository extends JpaRepository<AudioFileReference, Long>{
-    List<AudioFileReference> findByArtistContainingIgnoreCase(String artist);
+    Path load(String filename);
 }

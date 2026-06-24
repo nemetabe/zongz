@@ -1,11 +1,26 @@
-package com.nemetabe.zongz.domain;
+package com.nemetabe.zongz.domain.library;
 
-public class Album extends AbstractLibraryEntity{
-    private String title;
-    private Artist artist;
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "albums")
+public class Album extends AbstractLibraryEntity {
+
+    // Album may eventually carry release year, label — add when CSV audit confirms the data
+    private Integer releaseYear;  // nullable — ID3 coverage is partial
+
+    protected Album() {}
+
+    public Album(String rawName) {
+        setDisplayName(rawName);
+        setNormalizedName(rawName);
+    }
 
     @Override
     public String getDisplayName() {
-        return "";
+        return super.displayName;
     }
+
+    public Integer getReleaseYear() { return releaseYear; }
+    public void setReleaseYear(Integer releaseYear) { this.releaseYear = releaseYear; }
 }

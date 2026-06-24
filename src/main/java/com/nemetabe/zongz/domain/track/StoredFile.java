@@ -1,68 +1,60 @@
 package com.nemetabe.zongz.domain.track;
 
-
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
-import java.time.LocalDateTime;
+import lombok.Getter;
+import lombok.Setter;
 
-@Entity
-@Table(name = "audio_file_references")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class AudioFileReference {
+/**
+ * Value object — where the file physically lives and what kind it is.
+ * @Embeddable: no separate table, no separate ID.
+ * Columns live directly on the tracks table.
+ *
+ * Immutable after construction — use StoredFile.of() factory.
+ */
+@Getter
+@Setter
+@Embeddable
+public class StoredFile {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Long id;
 
-    @Column(name = "storage_path", nullable = false, length = 512)
-    private String storagePath;     // S3 object key or absolute disk path
+    @Setter
+    @Column(name = "file_path", nullable = false, length = 512)
+    private String path;
 
-    @Column(name = "file_extension", nullable = false, length = 10)
-    private String fileExtension;   // mp3, flac, wav
+    @Setter
+    @Enumerated(EnumType.STRING)
+    @Column(name = "audio_format", nullable = false, length = 10)
+    private AudioFormat format;
 
-    @Column(name = "file_size_bytes", nullable = false)
+    @Setter
+    @Enumerated(EnumType.STRING)
+    @Column(name = "audio_quality_tier", nullable = false, length = 20)
+    private AudioQualityTier qualityTier;
+
+    @Setter
+    @Column(name = "file_size_bytes")
     private Long fileSizeBytes;
 
-    // Unified Text Metadata Properties
-    @Column(name = "title", length = 255)
-    private String title;
+    protected StoredFile() {}
 
-    @Column(name = "artist", length = 255)
-    private String artist;
+    private StoredFile(String path, AudioFormat format, Long fileSizeBytes) {
+        if (path == null || path.isBlank()) throw new IllegalArgumentException("path must not be blank");
+        if (format == null) throw new IllegalArgumentException("format must not be null");
+        this.path = path;
+        this.format = format;
+        this.qualityTier = format.qualityTier();  // derived — single source of truth
+        this.fileSizeBytes = fileSizeBytes;
+    }
 
-    @Column(name = "album", length = 255)
-    private String album;
+    public static StoredFile of(String path, AudioFormat format, Long fileSizeBytes) {
+        return new StoredFile(path, format, fileSizeBytes);
+    }
 
-    @Column(name = "genre", length = 100)
-    private String genre;
-
-    @Column(name = "track_number", length = 20)
-    private String trackNumber;
-
-    @Column(name = "release_year")
-    private Integer releaseYear;
-
-    @Column(name = "contains_cover_art")
-    private Boolean containsCoverArt;
-
-    // Audio Stream Technical Properties
-    @Column(name = "duration_seconds")
-    private Integer durationSeconds;
-
-    @Column(name = "bit_rate_kbps")
-    private Integer bitRateKbps;
-
-    @Column(name = "sample_rate_hz")
-    private Integer sampleRateHz;
-
-    @Column(name = "is_lossless")
-    private Boolean isLossless;
-
-    @Column(name = "uploaded_at", nullable = false)
-    private LocalDateTime uploadedAt;
+    public String path() { return path; }
+    public AudioFormat format() { return format; }
+    public AudioQualityTier qualityTier() { return qualityTier; }
+    public Long fileSizeBytes() { return fileSizeBytes; }
 }
-

@@ -1,7 +1,5 @@
-package com.nemetabe.zongz.infrastructure;
+package com.nemetabe.zongz.domain.library;
 
-import com.nemetabe.zongz.domain.library.EntityResolver;
-import com.nemetabe.zongz.domain.library.Genre;
 import com.nemetabe.zongz.domain.port.GenreRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;

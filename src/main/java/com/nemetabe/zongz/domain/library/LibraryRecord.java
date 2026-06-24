@@ -1,8 +1,5 @@
-package com.nemetabe.zongz.domain.metadata;
+package com.nemetabe.zongz.domain.library;
 
-import com.nemetabe.zongz.domain.library.Album;
-import com.nemetabe.zongz.domain.library.Artist;
-import com.nemetabe.zongz.domain.library.Genre;
 import com.nemetabe.zongz.domain.track.Track;
 import jakarta.persistence.*;
 import lombok.Getter;

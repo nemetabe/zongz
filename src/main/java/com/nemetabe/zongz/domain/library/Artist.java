@@ -1,6 +1,5 @@
-package com.nemetabe.zongz.domain;
+package com.nemetabe.zongz.domain.library;
 
-import com.nemetabe.zongz.dao.model.metadata.TrackLibraryMetadata;
 import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,9 +7,6 @@ import java.util.List;
 @Entity
 @Table(name = "artists")
 public class Artist extends AbstractLibraryEntity {
-
-    @OneToMany(mappedBy = "artist", fetch = FetchType.LAZY)
-    private List<TrackLibraryMetadata> tracks = new ArrayList<>();
 
     protected Artist() {}  // JPA requires no-arg
 
@@ -23,6 +19,4 @@ public class Artist extends AbstractLibraryEntity {
     public String getDisplayName() {
         return super.displayName;
     }
-
-    public List<TrackLibraryMetadata> getTracks() { return tracks; }
 }

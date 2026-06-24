@@ -1,8 +1,7 @@
-package com.nemetabe.zongz.domain.track;
+package com.nemetabe.zongz.domain.analysis;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.nemetabe.zongz.domain.track.Track;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,4 +11,8 @@ import lombok.Setter;
 public class SpectrogramResult {
     @Id
     private Long id;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "track_id")
+    Track track;
 }
