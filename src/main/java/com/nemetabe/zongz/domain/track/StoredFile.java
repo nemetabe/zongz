@@ -1,4 +1,4 @@
-package com.nemetabe.zongz.dao.model.metadata.file;
+package com.nemetabe.zongz.domain.track;
 
 
 import jakarta.persistence.*;

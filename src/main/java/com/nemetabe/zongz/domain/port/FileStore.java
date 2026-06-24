@@ -1,6 +1,6 @@
 package com.nemetabe.zongz.repository;
 
-import com.nemetabe.zongz.dao.model.metadata.file.AudioFileReference;
+import com.nemetabe.zongz.domain.track.AudioFileReference;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,4 +1,4 @@
-package com.nemetabe.zongz.dao.model.library;
+package com.nemetabe.zongz.domain;
 
 public class Album extends AbstractLibraryEntity{
     private String title;
